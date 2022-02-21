@@ -38,11 +38,6 @@ export const UnlockRoute: () => JSX.Element = () => {
               callbackRoute={routeNames.dashboard}
               loginButtonText={'Web wallet'}
             />
-            <LedgerLoginButton
-              loginButtonText={'Ledger'}
-              callbackRoute={routeNames.dashboard}
-              className={'test-class_name'}
-            />
           </div>
         </div>
       </div>

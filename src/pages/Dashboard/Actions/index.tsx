@@ -43,20 +43,30 @@ const Actions = () => {
   React.useEffect(() => {
     const query = new Query({
       address: new Address(contractAddress),
-      func: new ContractFunction('getTimeToPong'),
-      args: [new AddressValue(new Address(address))]
+      func: new ContractFunction('getOffersFrom'),
+      args: [
+        new AddressValue(
+          new Address(
+            'erd1wx7h5rnyxre7avl5pkgj3c2fha9aknrwms8mspelfcapwvjac3vqncm7nm'
+          )
+        )
+      ]
     });
     const proxy = new ProxyProvider(network.apiAddress);
     proxy
       .queryContract(query)
       .then(({ returnData }) => {
         const [encoded] = returnData;
+        const decoded = Buffer.from(encoded, 'base64').toString('hex');
+        const numberOfOffers = decoded.length / 16;
+
+        console.log(parseInt(decoded.slice(16, 32), 16));
       })
       .catch((err) => {
         console.error('Unable to call VM query', err);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasPendingTransactions]);
+  }, []);
 
   const { sendTransactions } = transactionServices;
 

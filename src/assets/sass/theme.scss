@@ -1,14 +1,6 @@
 /* Bootstrap overrides
 -------------------------------------------------- */
 
-  $body: #000;
-  $headings-font-weight: 300 !important;
-$primary: #1b46c2;
-  $light: #fafafa;
-
-  $headings-font-weight: 300 !important;
-  $a: #1392ff;
-
 /* Do not move the imports from here.
 Override Bootstrap variables only above.
 -------------------------------------------------- */
@@ -19,78 +11,15 @@ Override Bootstrap variables only above.
 
 @import '~bootstrap/scss/reboot';
 
-
-
-.custom-classname.btn-primary {
-  background-color: green;
-}
 /* Base
 -------------------------------------------------- */
-html {
-  min-height: 100%;
-  font-size: 14px;
-}
 
 .wrapper {
   min-height: 100vh;
 }
 
-.opacity-6 {
-  opacity: 0.6;
-}
-
-.dapp-icon {
-  padding: 5px;
-  border-radius: 50%;
-  background-color: $light;
-  width: 65px;
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-
-  &.icon-medium {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-/* Navbar
--------------------------------------------------- */
-.elrond-logo {
-  width: 85px;
-  height: 25px;
-}
-
-.dapp-name {
-  line-height: 1;
-  border-left: 1px solid $gray-400;
-  padding-left: 3px;
-  margin-left: 4px;
-}
-
 /* Dashboard
 -------------------------------------------------- */
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $white;
-  margin: 0 7px;
-
-  button {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: $white;
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-}
 
 .transactions {
   .transaction-icon {
@@ -100,7 +29,6 @@ html {
   }
 
   &.table {
-
     .transaction-hash .trim {
       @include media-breakpoint-down(xl) {
         max-width: none;
@@ -116,7 +44,8 @@ html {
       }
     }
 
-    td, tr {
+    td,
+    tr {
       padding: 0.65rem;
     }
 
@@ -199,35 +128,6 @@ html {
     }
     100% {
       transform: translate(19px, 0);
-    }
-  }
-}
-
-/* Footer
--------------------------------------------------- */
-footer {
-  div {
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.155rem;
-
-    a {
-      color: $black;
-
-      &:hover {
-        color: $black;
-      }
-
-      #heart {
-        height: 16px;
-        width: 16px;
-
-        path {
-          fill: #c00;
-        }
-      }
     }
   }
 }
