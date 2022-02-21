@@ -1,10 +1,7 @@
 import React from 'react';
 import { logout, useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { Navbar as BsNavbar, NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { dAppName } from 'config';
 import { routeNames } from 'routes';
-import { ReactComponent as ElrondLogo } from './../../../assets/img/elrond.svg';
 
 const Navbar = () => {
   const { address } = useGetAccountInfo();
@@ -17,18 +14,30 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='grid'>
-        <Link
-          className='d-flex align-items-center navbar-brand mr-0'
-          to={isLoggedIn ? routeNames.dashboard : routeNames.home}
-        >
-          {dAppName}
-        </Link>
-        {isLoggedIn && (
-          <button className='btn btn-link' onClick={handleLogout}>
-            Close
-          </button>
-        )}
+      <div className='grid grid-cols-2 px-4 pt-12 pb-4 md:px-48'>
+        <div className='flex items-center font-bold text-3xl'>
+          <Link to={isLoggedIn ? routeNames.dashboard : routeNames.home}>
+            middleman.
+            <span className='text-grad'>nft</span>
+          </Link>
+        </div>
+        <ul className='flex justify-end items-center font-semibold gap-5'>
+          <li>
+            {isLoggedIn ? (
+              <button className='custom-btn' onClick={handleLogout}>
+                Close
+              </button>
+            ) : (
+              <Link
+                className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
+                to={routeNames.unlock}
+                style={{ textDecoration: 'none' }}
+              >
+                Connect
+              </Link>
+            )}
+          </li>
+        </ul>
       </div>
     </>
   );

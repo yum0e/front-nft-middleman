@@ -8,16 +8,14 @@ import Navbar from './Navbar';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { search } = useLocation();
   return (
-    <div className='bg-gradient-to-tr from-red-100 to-indigo-200 flex flex-col flex-fill wrapper'>
+    <div className='bg-black text-white flex flex-col min-h-screen'>
       <Navbar />
-      <main className='d-flex flex-column flex-grow-1'>
-        <AuthenticatedRoutesWrapper
-          routes={routes}
-          unlockRoute={`${routeNames.unlock}${search}`}
-        >
-          {children}
-        </AuthenticatedRoutesWrapper>
-      </main>
+      <AuthenticatedRoutesWrapper
+        routes={routes}
+        unlockRoute={`${routeNames.unlock}${search}`}
+      >
+        {children}
+      </AuthenticatedRoutesWrapper>
       <Footer />
     </div>
   );

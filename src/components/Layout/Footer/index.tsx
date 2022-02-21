@@ -1,21 +1,25 @@
 import React from 'react';
-import { ReactComponent as HeartIcon } from '../../../assets/img/heart.svg';
+import { contractAddress } from 'config';
 
 const Footer = () => {
+  const contractLink = `https://devnet-explorer.elrond.com/accounts/${contractAddress}`;
   return (
-    <footer className='text-center mt-2 mb-3'>
-      <div>
-        <a
-          {...{
-            target: '_blank'
-          }}
-          className='d-flex align-items-center'
-          href='https://elrond.com/'
-        >
-          Made with <HeartIcon className='mx-1' /> by Elrond Network.
+    <div className='py-8 flex flex-col gap-2 text-center font-bold'>
+      <div className='font-ligth text-xs'>
+        Contract address:{' '}
+        <a target='_blanck' href={contractLink}>
+          {contractAddress}
         </a>
       </div>
-    </footer>
+      <a
+        href='https://github.com/yum0e/middleman-nft'
+        target='_blanck'
+        className='font-ligth text-xs'
+      >
+        See the github repo
+      </a>
+      <div>Made for the community</div>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ interface GetLatestTransactionsType {
   url?: string;
 }
 
-const fetchTransactions = (url: string) =>
+export const fetchTransactions = (url: string) =>
   async function getTransactions({
     apiAddress,
     address,

@@ -1,8 +1,8 @@
 {
   "name": "@elrondnetwork/dapp-template",
-  "description": "Elrond Dapp Template",
+  "description": "middleman.nft",
   "version": "0.2.0",
-  "author": "ElrondNetwork",
+  "author": "yum0e",
   "license": "GPL-3.0-or-later",
   "repository": "@elrondnetwork/dapp-template",
   "dependencies": {
@@ -16,6 +16,7 @@
     "react": "17.0.2",
     "react-bootstrap": "2.1.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.27.1",
     "react-router-dom": "6.2.1",
     "react-scripts": "4.0.3",
     "typescript": "4.1.2",
