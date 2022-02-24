@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { search } = useLocation();
   return (
-    <div className='bg-black text-white flex flex-col min-h-screen'>
+    <div className='bg-gradient-to-br from-black to-gray-900 text-white flex flex-col min-h-screen'>
       <Navbar />
       <AuthenticatedRoutesWrapper
         routes={routes}

@@ -16,6 +16,8 @@ import {
 import axios from 'axios';
 import { contractAddress } from 'config';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { numberToHex, stringToHex } from 'utils';
+import converter from 'bech32-converting';
 
 interface IFormInput {
   spender: string;
@@ -40,79 +42,7 @@ const Actions = () => {
       string | null
     >(null);
 
-  React.useEffect(() => {
-    const query = new Query({
-      address: new Address(contractAddress),
-      func: new ContractFunction('getOffersFrom'),
-      args: [
-        new AddressValue(
-          new Address(
-            'erd1wx7h5rnyxre7avl5pkgj3c2fha9aknrwms8mspelfcapwvjac3vqncm7nm'
-          )
-        )
-      ]
-    });
-    const proxy = new ProxyProvider(network.apiAddress);
-    proxy
-      .queryContract(query)
-      .then(({ returnData }) => {
-        const [encoded] = returnData;
-        const decoded = Buffer.from(encoded, 'base64').toString('hex');
-        const numberOfOffers = decoded.length / 16;
-
-        console.log(parseInt(decoded.slice(16, 32), 16));
-      })
-      .catch((err) => {
-        console.error('Unable to call VM query', err);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const { sendTransactions } = transactionServices;
-
-  const sendPingTransaction = async () => {
-    const pingTransaction = {
-      value: '1000000000000000000',
-      data: 'ping',
-      receiver: contractAddress
-    };
-    await refreshAccount();
-
-    const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: pingTransaction,
-      transactionsDisplayInfo: {
-        processingMessage: 'Processing Ping transaction',
-        errorMessage: 'An error has occured during Ping',
-        successMessage: 'Ping transaction successful'
-      },
-      redirectAfterSign: false
-    });
-    if (sessionId != null) {
-      setTransactionSessionId(sessionId);
-    }
-  };
-
-  const sendPongTransaction = async () => {
-    const pongTransaction = {
-      value: '0',
-      data: 'pong',
-      receiver: contractAddress
-    };
-    await refreshAccount();
-
-    const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: pongTransaction,
-      transactionsDisplayInfo: {
-        processingMessage: 'Processing Pong transaction',
-        errorMessage: 'An error has occured during Pong',
-        successMessage: 'Pong transaction successful'
-      },
-      redirectAfterSign: false
-    });
-    if (sessionId != null) {
-      setTransactionSessionId(sessionId);
-    }
-  };
 
   const [collections, setCollections] = React.useState<Array<any>>();
   const { register, handleSubmit } = useForm<IFormInput>();
@@ -174,7 +104,33 @@ const Actions = () => {
     getCollections();
   }, [address]);
 
-  console.log(offer);
+  const createOfferTransaction = async () => {
+    const createOfferTx = {
+      value: '0',
+      data: `ESDTNFTTransfer@${stringToHex(offer.identifier)}@${numberToHex(
+        offer.nonce
+      )}@01@${new Address(contractAddress).hex()}@${stringToHex(
+        'createOffer'
+      )}@${new Address(offer.spender).hex()}@${numberToHex(
+        offer.amount * 10 ** 18
+      )}`,
+      receiver: address
+    };
+    await refreshAccount();
+
+    const { sessionId /*, error*/ } = await sendTransactions({
+      transactions: createOfferTx,
+      transactionsDisplayInfo: {
+        processingMessage: `Creating offer to ${offer.spender}`,
+        errorMessage: 'An error has occured during the creation of the offer',
+        successMessage: 'Offer created with success'
+      },
+      redirectAfterSign: false
+    });
+    if (sessionId != null) {
+      setTransactionSessionId(sessionId);
+    }
+  };
 
   return (
     <>
@@ -242,7 +198,12 @@ const Actions = () => {
                     for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ?
                   </div>
                   <div className='mx-auto grid grid-cols-2 gap-5'>
-                    <button className='mx-auto mt-4 custom-btn'>Yes</button>
+                    <button
+                      onClick={createOfferTransaction}
+                      className='mx-auto mt-4 custom-btn'
+                    >
+                      Yes
+                    </button>
                     <button
                       className='mx-auto mt-4 custom-btn-2'
                       onClick={() => window.location.reload()}

@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='px-48'>
+      <div className='px-4 md:px-48'>
         {isLoggedIn ? (
           <>
             <div className='font-bold'>Hello !</div>
