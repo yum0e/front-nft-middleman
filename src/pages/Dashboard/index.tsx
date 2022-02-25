@@ -64,9 +64,7 @@ const Dashboard = () => {
                     {nbSubmitted}
                   </span>
                 ) : (
-                  <span className='ml-1 px-2 rounded-full bg-red-500'>
-                    {nbSubmitted}
-                  </span>
+                  <span className='ml-1 px-2 rounded-full bg-red-500'>0</span>
                 )}
               </Link>
               <div>{}</div>
