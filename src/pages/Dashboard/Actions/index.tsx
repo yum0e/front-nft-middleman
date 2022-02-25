@@ -55,7 +55,9 @@ const Actions = () => {
 
   const getCollections = () => {
     axios
-      .get(`https://devnet-api.elrond.com/accounts/${address}/nfts`)
+      .get(
+        `https://devnet-api.elrond.com/accounts/${address}/nfts?size=2000&type=NonFungibleESDT`
+      )
       .then((response) => {
         const myCollections = response?.data;
         setCollections(myCollections);

@@ -71,7 +71,7 @@ export default function OffersFrom() {
   console.log(offersToId);
   return (
     <>
-      <div className='py-2'>
+      <div className='pt-2'>
         <div className='text-2xl'>Offers to me </div>
         <ul className='flex flex-col gap-2'>
           {offersToId?.map((x, index) => (
@@ -81,7 +81,7 @@ export default function OffersFrom() {
           ))}
         </ul>
       </div>
-      <div className='py-4'>
+      <div className='pt-4'>
         <div className='text-2xl'>Offers from me </div>
         <ul className='flex flex-col gap-3'>
           {offersFromId?.map((x: any, index: any) => (

@@ -181,9 +181,9 @@ export default function OfferCard(props: Props) {
     if (sessionId != null) {
       setTransactionSessionId(sessionId);
     }
+    window.location.reload();
   };
 
-  console.log(idOffer);
   return (
     <>
       {/* we only display the offer if the offer is Submitted */}
