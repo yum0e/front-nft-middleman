@@ -187,7 +187,7 @@ export default function OfferCard(props: Props) {
     <>
       {/* we only display the offer if the offer is Submitted */}
       {String(offersWithId?.status?.name) === 'Submitted' ? (
-        <div className='px-4 py-2 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-1 justify-items-stretch bg-gray-900 rounded-xl'>
+        <div className='px-4 py-2 mx-auto md:mx-8 wrap grid grid-cols-1 sm:grid-cols-2 gap-1 justify-items-stretch bg-gray-900 rounded-xl'>
           <div className='my-auto mx-auto flex flex-col gap-1 place-content-center'>
             <div className='flex justify-start'>
               <div className='px-2 py-1 text-xs bg-green-500 rounded-xl '>
