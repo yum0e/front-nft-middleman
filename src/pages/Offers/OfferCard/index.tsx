@@ -24,7 +24,7 @@ import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
 import axios from 'axios';
 import { contractAddress } from 'config';
 
-import { numberToHex, stringToHex } from 'utils';
+import { numberToHex } from 'utils';
 
 interface Offer {
   id: number;
