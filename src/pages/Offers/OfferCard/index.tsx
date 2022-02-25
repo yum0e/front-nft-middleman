@@ -24,7 +24,7 @@ import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
 import axios from 'axios';
 import { contractAddress } from 'config';
 
-import { numberToHex } from 'utils';
+import { numberToHex, stringToHex } from 'utils';
 
 interface Offer {
   id: number;
@@ -48,7 +48,9 @@ export default function OfferCard(props: Props) {
 
   const [offersWithId, setOffersWithId] = React.useState<Offer>();
   const [idOffer, setIdOffer] = React.useState<string>('');
-  const [nftUrl, setNftUrl] = React.useState<string>('');
+  const [nftUrl, setNftUrl] = React.useState<string>(
+    'https://media.elrond.com/nfts/thumbnail/default.png'
+  );
 
   const queryOffersWithId = new Query({
     address: new Address(contractAddress),
@@ -84,7 +86,7 @@ export default function OfferCard(props: Props) {
         const theOffer = decoded.valueOf();
         setOffersWithId(theOffer);
         getUrl(`${theOffer.token_id}-${numberToHex(theOffer.nonce.valueOf())}`);
-        setIdOffer(`${theOffer?.id?.valueOf().toString(16)}`);
+        setIdOffer(`${theOffer?.id?.valueOf()}`);
       })
       .catch((err) => {
         console.error('Unable to call VM query for queryOffersWithId', err);
@@ -117,13 +119,13 @@ export default function OfferCard(props: Props) {
     if (idOffer.length % 2 != 0) {
       acceptOfferTx = {
         value: `${offersWithId?.amount}`,
-        data: `acceptOffer@0${idOffer}`, // id to hex with toString(16)
+        data: `acceptOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     } else {
       acceptOfferTx = {
         value: `${offersWithId?.amount}`,
-        data: `acceptOffer@${idOffer}`, // id to hex with toString(16)
+        data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     }
@@ -150,13 +152,13 @@ export default function OfferCard(props: Props) {
     if (idOffer.length % 2 != 0) {
       deleteOfferTx = {
         value: 0,
-        data: `deleteOffer@0${idOffer}`, // id to hex with toString(16)
+        data: `deleteOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     } else {
       deleteOfferTx = {
         value: 0,
-        data: `deleteOffer@${idOffer}`, // id to hex with toString(16)
+        data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     }
@@ -177,12 +179,13 @@ export default function OfferCard(props: Props) {
     }
   };
 
+  console.log(idOffer);
   return (
     <>
       {/* we only display the offer if the offer is Submitted */}
       {String(offersWithId?.status?.name) === 'Submitted' ? (
-        <div className='px-4 py-2 mx-auto grid grid-cols-2 gap-1 justify-items-stretch bg-gray-900 rounded-xl'>
-          <div className='my-auto flex flex-col gap-1'>
+        <div className='px-4 py-2 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-1 justify-items-stretch bg-gray-900 rounded-xl'>
+          <div className='my-auto mx-auto flex flex-col gap-1 place-content-center'>
             <div className='flex justify-start'>
               <div className='px-2 py-1 text-xs bg-green-500 rounded-xl '>
                 {String(offersWithId?.status?.name)}
@@ -230,7 +233,7 @@ export default function OfferCard(props: Props) {
               </div>
             )}
           </div>
-          <div className='w-44 h-full py-4'>
+          <div className='w-44 h-full py-4 justify-self-center'>
             <img src={nftUrl} alt='default_img' />
           </div>
         </div>

@@ -72,8 +72,8 @@ export default function OffersFrom() {
   return (
     <>
       <div className='py-2'>
-        <div className='text-xl'>Offers to me </div>
-        <ul className='flex flex-col gap-3'>
+        <div className='text-2xl'>Offers to me </div>
+        <ul className='flex flex-col gap-2'>
           {offersToId?.map((x, index) => (
             <li key={index}>
               <OfferCard id={x} buyable={true} toDelete={false} />
@@ -82,7 +82,7 @@ export default function OffersFrom() {
         </ul>
       </div>
       <div className='py-4'>
-        <div className='text-xl'>Offers from me </div>
+        <div className='text-2xl'>Offers from me </div>
         <ul className='flex flex-col gap-3'>
           {offersFromId?.map((x: any, index: any) => (
             <li key={index}>

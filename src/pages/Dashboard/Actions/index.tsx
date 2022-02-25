@@ -8,7 +8,7 @@ import { Address } from '@elrondnetwork/erdjs';
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { contractAddress } from 'config';
-import { numberToHex, stringToHex } from 'utils';
+import { numberToHex, numberToHexForBigUint, stringToHex } from 'utils';
 
 interface IFormInput {
   spender: string;
@@ -99,7 +99,7 @@ const Actions = () => {
         offer.nonce
       )}@01@${new Address(contractAddress).hex()}@${stringToHex(
         'createOffer'
-      )}@${new Address(offer.spender).hex()}@${numberToHex(
+      )}@${new Address(offer.spender).hex()}@${numberToHexForBigUint(
         offer.amount * 10 ** 18
       )}`,
       receiver: address
@@ -181,7 +181,7 @@ const Actions = () => {
                     to purchase{' '}
                     <span className='text-grad-2'>
                       {JSON.stringify(offer.identifier).slice(1, -1)}-
-                      {JSON.stringify(offer.nonce)}{' '}
+                      {numberToHex(offer.nonce)}{' '}
                     </span>
                     for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ? (You
                     will receive{' '}

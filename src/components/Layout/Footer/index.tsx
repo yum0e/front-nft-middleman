@@ -8,7 +8,7 @@ const Footer = () => {
       <div className='font-ligth text-xs'>
         Contract address:{' '}
         <a target='_blanck' href={contractLink}>
-          {contractAddress}
+          {contractAddress.slice(0, 7)}...{contractAddress.slice(-7)}
         </a>
       </div>
       <a

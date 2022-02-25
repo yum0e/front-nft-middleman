@@ -8,6 +8,10 @@ export const stringToHex = (string: any) => {
 };
 
 export const numberToHex = (number: any) => {
+  return Number(number).toString(16).padStart(2, '0');
+};
+
+export const numberToHexForBigUint = (number: any) => {
   let hex = number.toString(16);
   if (hex.length % 2 != 0) {
     hex = '0' + hex;
