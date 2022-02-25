@@ -181,7 +181,6 @@ export default function OfferCard(props: Props) {
     if (sessionId != null) {
       setTransactionSessionId(sessionId);
     }
-    window.location.reload();
   };
 
   return (
