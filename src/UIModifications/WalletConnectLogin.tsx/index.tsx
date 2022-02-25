@@ -9,10 +9,7 @@ const WalletConnectLogin = () => {
   const { useWalletConnectLogin } = loginServices;
 
   const callbackRoute = routeNames.dashboard;
-  const loginButtonText = 'Connect';
-  const title = 'Maiar Login';
   const logoutRoute = '/';
-  const lead = 'Scan the QR code using Maiar';
   const redirectAfterLogin = true;
 
   const [
@@ -20,8 +17,8 @@ const WalletConnectLogin = () => {
     { error },
     { uriDeepLink, walletConnectUri }
   ] = useWalletConnectLogin({
-    logoutRoute,
     callbackRoute,
+    logoutRoute,
     redirectAfterLogin,
     shouldLoginUser: true
   });
@@ -56,9 +53,9 @@ const WalletConnectLogin = () => {
     <div className='login_container'>
       <div className='login_root'>
         <div className='login_card'>
-          <div className='login_cardBody'>
+          <div className='grid grid-cols-1 justify-items-center'>
             <div
-              className='login_qrCodeSvgContainer'
+              className='login_qrCodeSvgContainer bg-red'
               dangerouslySetInnerHTML={{
                 __html: qrCodeSvg
               }}
@@ -70,11 +67,10 @@ const WalletConnectLogin = () => {
 
             {isMobileDevice ? (
               <React.Fragment>
-                <p className='login_leadText'>{loginButtonText}</p>
                 <a
                   id='accessWalletBtn'
                   data-testid='accessWalletBtn'
-                  className='custom-btn'
+                  className='my-4 custom-btn '
                   href={uriDeepLink || undefined}
                   rel='noopener noreferrer nofollow'
                   target='_blank'
@@ -83,9 +79,14 @@ const WalletConnectLogin = () => {
                 </a>
               </React.Fragment>
             ) : (
-              <p className='login_leadText'>{lead}</p>
+              <p className='my-4 '>
+                Scan the QR code using{' '}
+                <span className='text-grad-2'>maiar</span>
+              </p>
             )}
-            <div>{error && <p className='login_errorMessage'>{error}</p>}</div>
+            <div>
+              {error && <p className='my-4 login_errorMessage'>{error}</p>}
+            </div>
           </div>
         </div>
       </div>

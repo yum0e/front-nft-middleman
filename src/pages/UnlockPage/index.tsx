@@ -1,7 +1,10 @@
 import React from 'react';
 import { DappUI, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { routeNames } from 'routes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import WalletConnectLogin from 'UIModifications/WalletConnectLogin.tsx';
+import ExtensionLoginButton from 'UIModifications/ExtensionLoginButton';
 
 export const UnlockRoute: () => JSX.Element = () => {
   const {
@@ -36,28 +39,35 @@ export const UnlockRoute: () => JSX.Element = () => {
             <div className='py-4 px-2 px-sm-2 mx-lg-4'>
               <h4 className='mb-4 font-bold text-xl'>Login</h4>
               <p className='mb-4 text-lg font-ligth'>Pick a login method</p>
-              <button onClick={handleOpenModal} className='custom-btn'>
-                Maiar
-              </button>
-              <ExtensionLoginButton
-                callbackRoute={routeNames.dashboard}
-                loginButtonText={'Extension'}
-              />
-
-              <WebWalletLoginButton
-                callbackRoute={routeNames.dashboard}
-                loginButtonText={'Web wallet'}
-              />
+              <div className='grid grid-cols-3 gap-4'>
+                <ExtensionLoginButton
+                  callbackRoute={routeNames.dashboard}
+                  loginButtonText={'Extension'}
+                />
+                <button
+                  onClick={handleOpenModal}
+                  className='bg-blue-700 rounded hover:bg-blue-800 '
+                >
+                  Maiar
+                </button>
+                <WebWalletLoginButton
+                  callbackRoute={routeNames.dashboard}
+                  loginButtonText={'Web wallet'}
+                />
+              </div>
               {showLoginModal && (
                 <div>
-                  <div className='my-4 bg-gray-900 rounded p-8'>
-                    <div className='d-flex justify-content-between align-items-center pt-spacer px-spacer mb-0'>
+                  <div className='my-4 grid-cols-1 bg-gray-900 rounded p-8'>
+                    <div className='flex justify-between mb-2'>
+                      <div></div>
                       <div className={'px-3'}>Maiar Login</div>
                       <button
                         type='button'
-                        className='btn btn-light px-3 py-2'
+                        className=''
                         onClick={handleCloseModal}
-                      ></button>
+                      >
+                        <FontAwesomeIcon icon={faTimes} size='lg' />
+                      </button>
                     </div>
 
                     <div className='modal-card-body text-center'>

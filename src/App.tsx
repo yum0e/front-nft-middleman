@@ -26,7 +26,10 @@ const App = () => {
         completedTransactionsDelay={200}
       >
         <Layout>
-          <TransactionsToastList />
+          <TransactionsToastList
+            shouldRenderDefaultCss={true}
+            className='text-black'
+          />
           <NotificationModal />
           <SignTransactionsModals className='custom-class-for-modals' />
           <Routes>
