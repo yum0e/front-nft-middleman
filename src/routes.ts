@@ -1,9 +1,9 @@
 import { dAppName } from 'config';
+import Offers from 'pages/Offers';
 import withPageTitle from './components/PageTitle';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Transaction from './pages/Transaction';
-import Offers from 'pages/Offers';
 
 export const routeNames = {
   home: '/',

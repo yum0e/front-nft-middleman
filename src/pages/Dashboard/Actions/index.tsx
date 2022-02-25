@@ -2,22 +2,13 @@ import * as React from 'react';
 import {
   transactionServices,
   useGetAccountInfo,
-  useGetPendingTransactions,
-  refreshAccount,
-  useGetNetworkConfig
+  refreshAccount
 } from '@elrondnetwork/dapp-core';
-import {
-  Address,
-  AddressValue,
-  ContractFunction,
-  ProxyProvider,
-  Query
-} from '@elrondnetwork/erdjs';
+import { Address } from '@elrondnetwork/erdjs';
 import axios from 'axios';
-import { contractAddress } from 'config';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { contractAddress } from 'config';
 import { numberToHex, stringToHex } from 'utils';
-import converter from 'bech32-converting';
 
 interface IFormInput {
   spender: string;
@@ -34,8 +25,6 @@ interface Offer {
 
 const Actions = () => {
   const account = useGetAccountInfo();
-  const { hasPendingTransactions } = useGetPendingTransactions();
-  const { network } = useGetNetworkConfig();
   const { address } = account;
 
   const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
@@ -65,18 +54,17 @@ const Actions = () => {
     axios
       .get(`https://devnet-api.elrond.com/accounts/${address}/nfts`)
       .then((response) => {
-        const collections = response?.data;
-        setCollections(collections);
+        const myCollections = response?.data;
+        setCollections(myCollections);
       })
       .catch((error) => console.log(`Error: ${error}`));
   };
-
   const getNftUrl = (identifier: string, spender: string, amount: number) => {
     axios
       .get(`https://devnet-api.elrond.com/nfts/${identifier}`)
       .then((response) => {
-        const nft_url = response?.data?.url;
-        setNftUrl(nft_url);
+        const nft_url_api = response?.data?.url;
+        setNftUrl(nft_url_api);
         // save the offer parameters in the same time
         setOffer({
           spender: spender,
@@ -87,7 +75,7 @@ const Actions = () => {
         // we check if the spender address exists
         axios
           .get(`https://devnet-api.elrond.com/accounts/${spender}`)
-          .then((response) => {
+          .then(() => {
             setIsSubmitted(true);
             setExists(true);
           })

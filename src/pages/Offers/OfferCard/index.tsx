@@ -1,14 +1,11 @@
 import React from 'react';
 import {
   transactionServices,
-  useGetAccountInfo,
-  useGetPendingTransactions,
   refreshAccount,
   useGetNetworkConfig
 } from '@elrondnetwork/dapp-core';
 import {
   Address,
-  AddressValue,
   BinaryCodec,
   ContractFunction,
   ProxyProvider,
@@ -24,8 +21,9 @@ import {
   FieldDefinition
 } from '@elrondnetwork/erdjs';
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
-import { contractAddress } from 'config';
 import axios from 'axios';
+import { contractAddress } from 'config';
+
 import { numberToHex } from 'utils';
 
 interface Offer {
@@ -45,10 +43,7 @@ type Props = {
 };
 
 export default function OfferCard(props: Props) {
-  const account = useGetAccountInfo();
-  const { hasPendingTransactions } = useGetPendingTransactions();
   const { network } = useGetNetworkConfig();
-  const { address } = account;
   const proxy = new ProxyProvider(network.apiAddress);
 
   const [offersWithId, setOffersWithId] = React.useState<Offer>();

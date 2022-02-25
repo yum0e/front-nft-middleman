@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { loginServices } from '@elrondnetwork/dapp-core';
-import { routeNames } from 'routes';
+
 import platform from 'platform';
 import QRCode from 'qrcode';
+import { routeNames } from 'routes';
 
 const WalletConnectLogin = () => {
   const { useWalletConnectLogin } = loginServices;

@@ -1,25 +1,21 @@
 import React from 'react';
 import {
-  transactionServices,
   useGetAccountInfo,
-  useGetPendingTransactions,
-  refreshAccount,
   useGetNetworkConfig
 } from '@elrondnetwork/dapp-core';
 import {
   Address,
   AddressValue,
-  BinaryCodec,
   ContractFunction,
   ProxyProvider,
   Query
 } from '@elrondnetwork/erdjs';
-import OfferCard from '../OfferCard';
 import { contractAddress } from 'config';
+import OfferCard from '../OfferCard';
 
 export default function OffersFrom() {
   const account = useGetAccountInfo();
-  const { hasPendingTransactions } = useGetPendingTransactions();
+
   const { network } = useGetNetworkConfig();
   const { address } = account;
   const proxy = new ProxyProvider(network.apiAddress);

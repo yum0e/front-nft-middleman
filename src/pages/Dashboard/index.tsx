@@ -1,10 +1,9 @@
 import * as React from 'react';
+import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
+import { Link } from 'react-router-dom';
+import { routeNames } from 'routes';
 import Actions from './Actions';
 import TopInfo from './TopInfo';
-import Transactions from './Transactions';
-import { Link } from 'react-router-dom';
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { routeNames } from 'routes';
 
 const Dashboard = () => {
   const { address } = useGetAccountInfo();

@@ -1,10 +1,10 @@
 import React from 'react';
 import { DappUI, useGetLoginInfo } from '@elrondnetwork/dapp-core';
-import { routeNames } from 'routes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { routeNames } from 'routes';
+
 import WalletConnectLogin from 'UIModifications/WalletConnectLogin.tsx';
-import ExtensionLoginButton from 'UIModifications/ExtensionLoginButton';
 
 export const UnlockRoute: () => JSX.Element = () => {
   const {

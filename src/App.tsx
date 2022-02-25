@@ -3,10 +3,10 @@ import { DappUI, DappProvider } from '@elrondnetwork/dapp-core';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Layout from 'components/Layout';
 import PageNotFound from 'pages/PageNotFound';
+import UnlockRoute from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import routes from 'routes';
 import '@elrondnetwork/dapp-core/build/index.css';
-import UnlockRoute from 'pages/UnlockPage';
 
 const environment = 'devnet';
 
