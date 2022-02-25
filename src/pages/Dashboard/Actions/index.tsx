@@ -182,7 +182,7 @@ const Actions = () => {
                   src={nft_url}
                   alt='nft_url'
                 />
-                <div className='py-4 flex flex-col justify-center text-center mx-44'>
+                <div className='py-4 flex flex-col justify-center text-center mx-2 md:mx-44'>
                   <div className='font-bold'>
                     Do you want to allow{' '}
                     <span className='text-grad'>
