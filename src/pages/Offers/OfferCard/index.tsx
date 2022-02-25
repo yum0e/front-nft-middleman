@@ -53,6 +53,7 @@ export default function OfferCard(props: Props) {
 
   const [offersWithId, setOffersWithId] = React.useState<Offer>();
   const [idOffer, setIdOffer] = React.useState<string>('');
+  const [nftUrl, setNftUrl] = React.useState<string>('');
 
   const queryOffersWithId = new Query({
     address: new Address(contractAddress),
@@ -60,10 +61,8 @@ export default function OfferCard(props: Props) {
     args: [new U64Value(new BigNumber(props.id))]
   });
 
-  // query offers with id
-  // useEffect if address changes in order to avoid overloading the api by requests
-  React.useEffect(() => {
-    proxy
+  const proxyQuery = async () => {
+    await proxy
       .queryContract(queryOffersWithId)
       .then(({ returnData }) => {
         const [encoded] = returnData;
@@ -89,21 +88,29 @@ export default function OfferCard(props: Props) {
         const decoded = codec.decodeTopLevel(buffer, offerType);
         const theOffer = decoded.valueOf();
         setOffersWithId(theOffer);
-        setIdOffer(theOffer.id.valueOf().toString(16));
+        getUrl(`${theOffer.token_id}-${numberToHex(theOffer.nonce.valueOf())}`);
+        setIdOffer(`${theOffer?.id?.valueOf().toString(16)}`);
       })
       .catch((err) => {
-        console.error('Unable to call VM query', err);
+        console.error('Unable to call VM query for queryOffersWithId', err);
       });
+  };
 
-    axios
-      .get(`https://devnet-api.elrond.com/nfts/${offersWithId?.token_id}`)
+  const getUrl = async (apiIdentifier: string) => {
+    await axios
+      .get(`https://devnet-api.elrond.com/nfts/${apiIdentifier}`)
       .then((response) => {
-        console.log(response?.data);
+        setNftUrl(response?.data?.url);
       })
       .catch((e) => console.log(`Error: ${e}`));
-  }, [address]);
+  };
 
-  console.log(offersWithId?.token_id);
+  // query offers with id
+  // useEffect if address changes in order to avoid overloading the api by requests
+  React.useEffect(() => {
+    proxyQuery();
+  }, []);
+
   //   // accepting offer
   const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
       string | null
@@ -229,10 +236,7 @@ export default function OfferCard(props: Props) {
             )}
           </div>
           <div className='w-44 h-full py-4'>
-            <img
-              src='https://media.elrond.com/nfts/thumbnail/default.png'
-              alt='default_img'
-            />
+            <img src={nftUrl} alt='default_img' />
           </div>
         </div>
       ) : (

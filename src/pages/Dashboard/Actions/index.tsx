@@ -195,7 +195,9 @@ const Actions = () => {
                       {JSON.stringify(offer.identifier).slice(1, -1)}-
                       {JSON.stringify(offer.nonce)}{' '}
                     </span>
-                    for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ?
+                    for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ? (You
+                    will receive{' '}
+                    {JSON.stringify(offer.amount * 0.98).slice(0, 5)} EGLD)
                   </div>
                   <div className='mx-auto grid grid-cols-2 gap-5'>
                     <button

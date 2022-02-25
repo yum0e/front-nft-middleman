@@ -9,8 +9,8 @@ export const stringToHex = (string: any) => {
 
 export const numberToHex = (number: any) => {
   let hex = number.toString(16);
-  if (number.toString(16).length % 2 != 0) {
-    hex = '0' + number.toString(16);
+  if (hex.length % 2 != 0) {
+    hex = '0' + hex;
   }
   return hex;
 };
