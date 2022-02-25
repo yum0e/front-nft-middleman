@@ -7,7 +7,7 @@ const Navbar = () => {
   const { address } = useGetAccountInfo();
 
   const handleLogout = () => {
-    logout(`${window.location.origin}/unlock`);
+    logout(`${window.location.origin}`);
   };
 
   const isLoggedIn = Boolean(address);
@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
       <div className='grid grid-cols-2 px-4 pt-12 pb-4 md:px-48'>
-        <div className='flex items-center font-bold text-3xl'>
+        <div className='flex items-center font-bold md:text-3xl text-xl'>
           <Link to={isLoggedIn ? routeNames.dashboard : routeNames.home}>
             middleman.
             <span className='text-grad'>nft</span>

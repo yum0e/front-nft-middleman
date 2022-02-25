@@ -4,7 +4,7 @@ import { contractAddress } from 'config';
 const Footer = () => {
   const contractLink = `https://devnet-explorer.elrond.com/accounts/${contractAddress}`;
   return (
-    <div className='py-8 flex flex-col gap-2 text-center font-bold'>
+    <div className='py-8 flex flex-col gap-2 text-center text-xs md:text-md font-bold'>
       <div className='font-ligth text-xs'>
         Contract address:{' '}
         <a target='_blanck' href={contractLink}>
