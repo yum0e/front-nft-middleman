@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { contractAddress } from 'config';
 import { routeNames } from 'routes';
 import OffersFrom from './OffersFrom';
+import OffersHistory from './OffersHistory';
 
 export default function Offers() {
   const { address } = useGetAccountInfo();
@@ -61,6 +62,8 @@ export default function Offers() {
           Sorry, you don&apos;t have any offers yet!
         </div>
       )}
+
+      <OffersHistory />
     </div>
   );
 }
