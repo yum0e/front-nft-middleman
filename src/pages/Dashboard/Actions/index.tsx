@@ -132,7 +132,7 @@ const Actions = () => {
               className='px-8 pb-8 flex flex-col gap-2'
               onSubmit={handleSubmit(onSubmit)}
             >
-              <label className='font-bold'>Spender Address</label>
+              <label className='font-bold'>Buyor Address</label>
               <input
                 {...register('spender')}
                 className='py-2 px-2 rounded-lg text-black font-semibold focus:ring-2 focus:ring-red-600'
@@ -209,7 +209,7 @@ const Actions = () => {
               <>
                 <div className='mb-8'>
                   <div className='font-bold text-center py-8 text-grad'>
-                    Sorry, the spender that you referenced does not exist
+                    Sorry, the buyor that you referenced does not exist
                   </div>
                   <button
                     onClick={() => window.location.reload()}
