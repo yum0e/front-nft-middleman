@@ -119,12 +119,14 @@ export default function OfferCard(props: Props) {
     if (idOffer.length % 2 != 0) {
       acceptOfferTx = {
         value: `${offersWithId?.amount}`,
+        gasLimit: '5000000',
         data: `acceptOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     } else {
       acceptOfferTx = {
         value: `${offersWithId?.amount}`,
+        gasLimit: '5000000',
         data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
@@ -152,12 +154,14 @@ export default function OfferCard(props: Props) {
     if (idOffer.length % 2 != 0) {
       deleteOfferTx = {
         value: 0,
+        gasLimit: '5000000',
         data: `deleteOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
     } else {
       deleteOfferTx = {
         value: 0,
+        gasLimit: '5000000',
         data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
         receiver: contractAddress
       };
@@ -193,7 +197,7 @@ export default function OfferCard(props: Props) {
             </div>
 
             <div>
-              Expected Buyor:{' '}
+              Expected Buyer:{' '}
               <span className='text-grad-2'>
                 {String(offersWithId?.spender).slice(0, 5)}...
                 {String(offersWithId?.spender).slice(-5)}

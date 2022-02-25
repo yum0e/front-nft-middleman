@@ -7,6 +7,7 @@ import {
 import { Address } from '@elrondnetwork/erdjs';
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { contractAddress } from 'config';
 import { numberToHex, numberToHexForBigUint, stringToHex } from 'utils';
 
@@ -49,6 +50,8 @@ const Actions = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     getNftUrl(data?.identifier, data?.spender, data?.amount);
   };
+
+  const navigate = useNavigate();
 
   const getCollections = () => {
     axios
@@ -95,6 +98,7 @@ const Actions = () => {
   const createOfferTransaction = async () => {
     const createOfferTx = {
       value: '0',
+      gasLimit: '5000000',
       data: `ESDTNFTTransfer@${stringToHex(offer.identifier)}@${numberToHex(
         offer.nonce
       )}@01@${new Address(contractAddress).hex()}@${stringToHex(
@@ -113,45 +117,49 @@ const Actions = () => {
         errorMessage: 'An error has occured during the creation of the offer',
         successMessage: 'Offer created with success'
       },
-      redirectAfterSign: false
+      redirectAfterSign: true
     });
     if (sessionId != null) {
       setTransactionSessionId(sessionId);
     }
+
+    navigate('/offers');
   };
 
   return (
     <>
-      <div className='py-4 w-90 h-auto bg-gray-900 rounded-xl shadow-xl'>
+      <div className='mt-4 pb-4 mx-auto md:mx-16 h-auto bg-gray-900 rounded-xl shadow-xl'>
         {!isSubmitted ? (
           <>
             <div className='pt-8 pb-4 flex justify-center font-semibold'>
               Choose the NFT you want to sell
             </div>
             <form
-              className='px-8 pb-8 flex flex-col gap-2'
+              className='px-8 pb-8 flex flex-col gap-3'
               onSubmit={handleSubmit(onSubmit)}
             >
-              <label className='font-bold'>Buyor Address</label>
+              {/* <label className='font-bold'>Buyer Address</label> */}
               <input
                 {...register('spender')}
+                placeholder='Buyer address'
                 className='py-2 px-2 rounded-lg text-black font-semibold focus:ring-2 focus:ring-red-600'
                 required
               />
-              <label className='font-bold'>NFT Selection</label>
+              {/* <label className='font-bold'>NFT Selection</label> */}
               <select
                 {...register('identifier')}
                 className=' py-2 px-2 rounded-lg text-black font-semibold'
                 required
               >
-                <option key='0'></option>
+                <option key='0'>Select your NFT</option>
                 {collections?.map((json, index) => {
                   return <option key={index}>{json.identifier}</option>;
                 })}
               </select>
-              <label className='font-bold'>Sell Amount</label>
+              {/* <label className='font-bold'>Offer price</label> */}
               <input
                 {...register('amount')}
+                placeholder='Offer price'
                 className='py-2 px-2 rounded-lg text-black font-semibold'
                 required
               />
@@ -209,7 +217,7 @@ const Actions = () => {
               <>
                 <div className='mb-8'>
                   <div className='font-bold text-center py-8 text-grad'>
-                    Sorry, the buyor that you referenced does not exist
+                    Sorry, the buyer that you referenced does not exist
                   </div>
                   <button
                     onClick={() => window.location.reload()}
