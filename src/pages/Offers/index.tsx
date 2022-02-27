@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { contractAddress } from 'config';
 import { routeNames } from 'routes';
 import OffersFrom from './OffersFrom';
-import OffersHistory from './OffersHistory';
+//import OffersHistory from './OffersHistory';
 
 export default function Offers() {
   const { address } = useGetAccountInfo();
@@ -47,7 +47,7 @@ export default function Offers() {
     nbOffersSubmittedQuery();
   }, []);
   return (
-    <div className='px-8 md:px-48 min-h-screen'>
+    <div className='z-10 w-full px-8 md:px-48 mb-4'>
       <div className='font-bold text-3xl '>My Offers</div>
       <button className='my-2 py-1 px-2 rounded-xl text-sm bg-blue-500'>
         <Link to={routeNames.dashboard}>Go back</Link>
@@ -63,7 +63,7 @@ export default function Offers() {
         </div>
       )}
 
-      <OffersHistory />
+      {/* <OffersHistory /> */}
     </div>
   );
 }

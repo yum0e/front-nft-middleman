@@ -13,7 +13,9 @@ Override Bootstrap variables only above.
 
 /* Base
 -------------------------------------------------- */
-
+* {
+  color: inherit;
+}
 .wrapper {
   min-height: 100vh;
 }

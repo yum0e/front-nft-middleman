@@ -14,15 +14,15 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='grid grid-cols-2 px-4 pt-12 pb-4 md:px-48'>
+      <div className='z-10 px-4 pt-8 md:pt-12 pb-4 md:px-48 flex justify-between '>
         <div className='flex items-center font-bold md:text-3xl text-2xl'>
           <Link to={isLoggedIn ? routeNames.dashboard : routeNames.home}>
             middleman.
             <span className='text-grad'>nft</span>
           </Link>
         </div>
-        <ul className='flex justify-end items-center font-semibold gap-5'>
-          <li>
+        <div className='flex justify-end items-center font-semibold gap-5'>
+          <div>
             {isLoggedIn ? (
               <button className='custom-btn' onClick={handleLogout}>
                 Close
@@ -36,8 +36,8 @@ const Navbar = () => {
                 Connect
               </Link>
             )}
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </>
   );

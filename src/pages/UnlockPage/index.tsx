@@ -33,7 +33,7 @@ export const UnlockRoute: () => JSX.Element = () => {
 
   return (
     <>
-      <div className='flex flex-fill align-items-center '>
+      <div className='z-10 flex flex-fill align-items-center '>
         <div className='m-auto' data-testid='unlockPage'>
           <div className='card my-4 text-center'>
             <div className='py-4 px-2 px-sm-2 mx-lg-4'>
