@@ -10,6 +10,8 @@ import {
   Query,
   AddressValue
 } from '@elrondnetwork/erdjs';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { contractAddress } from 'config';
 import { routeNames } from 'routes';
@@ -52,6 +54,18 @@ export default function Offers() {
       <button className='my-2 py-1 px-2 rounded-xl text-sm bg-blue-500'>
         <Link to={routeNames.dashboard}>Go back</Link>
       </button>
+
+      <div className='text-center'>
+        <span className='text-grad'>Disclaimer</span> - Only verified
+        collections have the verified tick
+        <FontAwesomeIcon
+          icon={faCheck}
+          size='sm'
+          className='ml-3 text-green-400'
+        />
+        , when you don&apos;t see this tick near the collection in the offer, be
+        very careful.
+      </div>
 
       {nbSubmitted > 0 ? (
         <>

@@ -75,12 +75,12 @@ export default function OffersHistory() {
         <ul className='flex flex-col gap-2'>
           {offersToId?.map((x, index) => (
             <li key={index}>
-              <OfferCardHistory id={x} sold={false} toDelete={false} />
+              <OfferCardHistory id={x} sold={false} />
             </li>
           ))}
           {offersFromId?.map((x, index) => (
             <li key={index}>
-              <OfferCardHistory id={x} sold={true} toDelete={false} />
+              <OfferCardHistory id={x} sold={true} />
             </li>
           ))}
         </ul>

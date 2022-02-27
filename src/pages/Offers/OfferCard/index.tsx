@@ -21,8 +21,10 @@ import {
   FieldDefinition
 } from '@elrondnetwork/erdjs';
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { contractAddress } from 'config';
+import { contractAddress, verified } from 'config';
 
 import { numberToHex } from 'utils';
 
@@ -214,6 +216,13 @@ export default function OfferCard(props: Props) {
               <span className='text-grad'>
                 {String(offersWithId?.token_id)}
               </span>
+              {verified.includes(String(offersWithId?.token_id)) && (
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  size='xs'
+                  className='ml-3 text-green-400'
+                />
+              )}
             </div>
             {props.buyable && (
               <div className='py-2 flex justify-start'>

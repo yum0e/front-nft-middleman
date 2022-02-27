@@ -21,8 +21,11 @@ import {
   FieldDefinition
 } from '@elrondnetwork/erdjs';
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { contractAddress } from 'config';
+
+import { contractAddress, verified } from 'config';
 
 import { numberToHex } from 'utils';
 
@@ -39,7 +42,6 @@ interface Offer {
 type Props = {
   id: number;
   sold: boolean;
-  toDelete: boolean;
 };
 
 export default function OfferCardHistory(props: Props) {
@@ -148,41 +150,6 @@ export default function OfferCardHistory(props: Props) {
     }
   };
 
-  const deleteOfferTransaction = async () => {
-    // pair length for hex
-    let deleteOfferTx;
-    if (idOffer.length % 2 != 0) {
-      deleteOfferTx = {
-        value: 0,
-        gasLimit: '5000000',
-        data: `deleteOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    } else {
-      deleteOfferTx = {
-        value: 0,
-        gasLimit: '5000000',
-        data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    }
-
-    await refreshAccount();
-
-    const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: deleteOfferTx,
-      transactionsDisplayInfo: {
-        processingMessage: 'Deleting offer',
-        errorMessage: 'An error has occured during deleting',
-        successMessage: 'Offer deleted with success'
-      },
-      redirectAfterSign: false
-    });
-    if (sessionId != null) {
-      setTransactionSessionId(sessionId);
-    }
-  };
-
   return (
     <>
       {/* we only display the offer if the offer is Submitted */}
@@ -207,6 +174,13 @@ export default function OfferCardHistory(props: Props) {
               <span className='text-grad'>
                 {String(offersWithId?.token_id)}
               </span>
+              {verified.includes(String(offersWithId?.token_id)) && (
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  size='xs'
+                  className='ml-3 text-green-400'
+                />
+              )}
             </div>
             {props.sold ? (
               <div className='py-2 flex justify-start'>
@@ -224,16 +198,6 @@ export default function OfferCardHistory(props: Props) {
                   className='py-2 px-2 text-sm bg-red-500 text-white font-semibold rounded-lg cursor-pointer'
                 >
                   Bought for {+String(offersWithId?.amount) / 10 ** 18} EGLD
-                </button>
-              </div>
-            )}
-            {props.toDelete && (
-              <div className='py-2 flex justify-start'>
-                <button
-                  onClick={deleteOfferTransaction}
-                  className='py-2 px-2 text-sm bg-white text-black font-semibold rounded-lg cursor-pointer'
-                >
-                  Delete offer
                 </button>
               </div>
             )}
