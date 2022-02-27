@@ -3,8 +3,8 @@ import { DappUI, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { routeNames } from 'routes';
-
 import WalletConnectLogin from 'UIModifications/WalletConnectLogin.tsx';
+import Background from '../../assets/img/landing_page_bg.png';
 
 export const UnlockRoute: () => JSX.Element = () => {
   const {
@@ -33,6 +33,10 @@ export const UnlockRoute: () => JSX.Element = () => {
 
   return (
     <>
+      <img
+        className='min-w-full min-h-full absolute top-0 left-0 object-cover bg-repeat-space filter -hue-rotate-30'
+        src={Background}
+      />
       <div className='z-10 flex flex-fill align-items-center '>
         <div className='m-auto' data-testid='unlockPage'>
           <div className='card my-4 text-center'>

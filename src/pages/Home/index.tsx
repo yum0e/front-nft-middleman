@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Background from '../../assets/img/landing_page_bg.png';
 
 const Home = () => {
   return (
@@ -11,6 +12,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <img
+        className='min-w-full min-h-full absolute top-0 left-0 object-cover bg-repeat-space filter -hue-rotate-30'
+        src={Background}
+      />
     </>
   );
 };
