@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  transactionServices,
-  refreshAccount,
-  useGetNetworkConfig
-} from '@elrondnetwork/dapp-core';
+import { useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import {
   Address,
   BinaryCodec,
@@ -21,10 +17,8 @@ import {
   FieldDefinition
 } from '@elrondnetwork/erdjs';
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-
+import CheckBadge from 'components/CheckBadge';
 import { contractAddress, verified } from 'config';
 
 import { numberToHex } from 'utils';
@@ -49,7 +43,7 @@ export default function OfferCardHistory(props: Props) {
   const proxy = new ProxyProvider(network.apiAddress);
 
   const [offersWithId, setOffersWithId] = React.useState<Offer>();
-  const [idOffer, setIdOffer] = React.useState<string>('');
+  const [, setIdOffer] = React.useState<string>('');
   const [nftUrl, setNftUrl] = React.useState<string>(
     'https://media.elrond.com/nfts/thumbnail/default.png'
   );
@@ -110,101 +104,52 @@ export default function OfferCardHistory(props: Props) {
     proxyQuery();
   }, []);
 
-  //   // accepting offer
-  const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
-      string | null
-    >(null);
-  const { sendTransactions } = transactionServices;
-  const acceptOfferTransaction = async () => {
-    // pair length for hex
-    let acceptOfferTx;
-    if (idOffer.length % 2 != 0) {
-      acceptOfferTx = {
-        value: `${offersWithId?.amount}`,
-        gasLimit: '5000000',
-        data: `acceptOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    } else {
-      acceptOfferTx = {
-        value: `${offersWithId?.amount}`,
-        gasLimit: '5000000',
-        data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    }
-
-    await refreshAccount();
-
-    const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: acceptOfferTx,
-      transactionsDisplayInfo: {
-        processingMessage: 'Accepting offer',
-        errorMessage: 'An error has occured during accepting',
-        successMessage: 'Offer accepted and NFT received'
-      },
-      redirectAfterSign: false
-    });
-    if (sessionId != null) {
-      setTransactionSessionId(sessionId);
-    }
-  };
-
   return (
     <>
       {/* we only display the offer if the offer is Submitted */}
       {String(offersWithId?.status?.name) === 'Completed' ? (
-        <div className='px-4 py-2 mx-auto md:mx-8 wrap grid grid-cols-1 sm:grid-cols-2 gap-1 justify-items-stretch bg-gray-900 rounded-xl'>
-          <div className='my-auto mx-auto flex flex-col gap-1 place-content-center'>
-            <div className='flex justify-start'>
-              <div className='px-2 py-1 text-xs bg-blue-500 rounded-xl '>
-                {String(offersWithId?.status?.name)}
-              </div>
-            </div>
-
-            <div>
-              Buyer:{' '}
-              <span className='text-grad-2'>
-                {String(offersWithId?.spender).slice(0, 5)}...
-                {String(offersWithId?.spender).slice(-5)}
-              </span>
-            </div>
-            <div>
-              Collection :{' '}
-              <span className='text-grad'>
-                {String(offersWithId?.token_id)}
-              </span>
-              {verified.includes(String(offersWithId?.token_id)) && (
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  size='xs'
-                  className='ml-3 text-green-400'
-                />
-              )}
-            </div>
-            {props.sold ? (
-              <div className='py-2 flex justify-start'>
-                <button
-                  onClick={acceptOfferTransaction}
-                  className='py-2 px-2 text-sm bg-green-500 text-white font-semibold rounded-lg cursor-pointer'
-                >
-                  Sold for {+String(offersWithId?.amount) / 10 ** 18} EGLD
-                </button>
-              </div>
-            ) : (
-              <div className='py-2 flex justify-start'>
-                <button
-                  onClick={acceptOfferTransaction}
-                  className='py-2 px-2 text-sm bg-red-500 text-white font-semibold rounded-lg cursor-pointer'
-                >
-                  Bought for {+String(offersWithId?.amount) / 10 ** 18} EGLD
-                </button>
-              </div>
-            )}
-          </div>
-          <div className='w-44 h-full py-4 justify-self-center'>
+        <div className='px-2 py-2 grid grid-cols-5 bg-gray-900'>
+          <div className='w-12 h-12 '>
             <img src={nftUrl} alt='default_img' />
           </div>
+          <a
+            href={`https://devnet-explorer.elrond.com/accounts/${String(
+              offersWithId?.nft_holder
+            )}`}
+            target='_blank'
+            rel='noreferrer'
+            className=' text-grad-2'
+          >
+            {String(offersWithId?.nft_holder).slice(0, 4)}...
+            {String(offersWithId?.nft_holder).slice(-4)}
+          </a>
+          <a
+            href={`https://devnet-explorer.elrond.com/accounts/${String(
+              offersWithId?.spender
+            )}`}
+            target='_blank'
+            rel='noreferrer'
+            className=' text-grad-2'
+          >
+            {String(offersWithId?.spender).slice(0, 4)}...
+            {String(offersWithId?.spender).slice(-4)}
+          </a>
+
+          <a
+            href={`https://devnet-explorer.elrond.com/collections/${String(
+              offersWithId?.token_id
+            )}`}
+            target='_blank'
+            rel='noreferrer'
+            className='text-grad'
+          >
+            {String(offersWithId?.token_id)}{' '}
+            {verified.includes(String(offersWithId?.token_id)) && (
+              <CheckBadge />
+            )}
+          </a>
+
+          <div>{+String(offersWithId?.amount) / 10 ** 18} EGLD</div>
         </div>
       ) : (
         <div></div>

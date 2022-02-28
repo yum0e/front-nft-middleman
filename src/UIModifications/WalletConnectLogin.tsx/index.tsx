@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { loginServices } from '@elrondnetwork/dapp-core';
-
 import platform from 'platform';
 import QRCode from 'qrcode';
 import { routeNames } from 'routes';

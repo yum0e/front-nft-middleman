@@ -10,9 +10,8 @@ import {
   Query,
   AddressValue
 } from '@elrondnetwork/erdjs';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import CheckBadge from 'components/CheckBadge';
 import { contractAddress } from 'config';
 import { routeNames } from 'routes';
 import OffersFrom from './OffersFrom';
@@ -55,16 +54,11 @@ export default function Offers() {
         <Link to={routeNames.dashboard}>Go back</Link>
       </button>
 
-      <div className='text-center'>
+      <div className='mt-4 text-center'>
         <span className='text-grad'>Disclaimer</span> - Only verified
         collections have the verified tick
-        <FontAwesomeIcon
-          icon={faCheck}
-          size='sm'
-          className='ml-3 text-green-400'
-        />
-        , when you don&apos;t see this tick near the collection in the offer, be
-        very careful.
+        <CheckBadge />, when you don&apos;t see this tick near the collection in
+        the offer, be very careful.
       </div>
 
       {nbSubmitted > 0 ? (
@@ -72,7 +66,7 @@ export default function Offers() {
           <OffersFrom />
         </>
       ) : (
-        <div className='my-4 flex justify-center'>
+        <div className='my-4 flex justify-center text-grad-2'>
           Sorry, you don&apos;t have any offers yet!
         </div>
       )}

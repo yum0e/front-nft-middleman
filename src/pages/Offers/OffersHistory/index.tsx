@@ -71,19 +71,28 @@ export default function OffersHistory() {
   return (
     <>
       <div className='pt-2'>
-        <div className='mb-4 text-2xl'>Offers History </div>
-        <ul className='flex flex-col gap-2'>
+        <div className='mb-4 text-2xl'>Your Offers History </div>
+        <div className='text-xs md:text-sm'>
+          <div className='py-2 px-4 grid grid-cols-5 bg-gradient-to-r from-gray-800 to-gray-600 rounded-t-lg'>
+            <div>NFT</div>
+            <div>From</div>
+            <div>To</div>
+            <div>Collection</div>
+            <div>Price</div>
+          </div>
+
           {offersToId?.map((x, index) => (
-            <li key={index}>
+            <div key={index}>
               <OfferCardHistory id={x} sold={false} />
-            </li>
+            </div>
           ))}
           {offersFromId?.map((x, index) => (
-            <li key={index}>
+            <div key={index}>
               <OfferCardHistory id={x} sold={true} />
-            </li>
+            </div>
           ))}
-        </ul>
+          <div className='grid grid-cols-5 h-6 bg-gray-900 rounded-b-xl'></div>
+        </div>
       </div>
     </>
   );
