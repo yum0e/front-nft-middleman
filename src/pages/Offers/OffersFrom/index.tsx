@@ -28,13 +28,13 @@ export default function OffersFrom() {
   React.useEffect(() => {
     const queryOffersFrom = new Query({
       address: new Address(contractAddress),
-      func: new ContractFunction('getOffersFrom'),
+      func: new ContractFunction('getOffersSubmittedFrom'),
       args: [new AddressValue(new Address(address_target))]
     });
 
     const queryOffersTo = new Query({
       address: new Address(contractAddress),
-      func: new ContractFunction('getOffersTo'),
+      func: new ContractFunction('getOffersSubmittedTo'),
       args: [new AddressValue(new Address(address_target))]
     });
 

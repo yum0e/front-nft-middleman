@@ -2,15 +2,17 @@ import * as React from 'react';
 import {
   transactionServices,
   useGetAccountInfo,
+  useGetPendingTransactions,
   refreshAccount
 } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs';
 
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import CheckBadge from 'components/CheckBadge';
+import TxProcessingNotch from 'components/TxProcessingNotch';
 import { contractAddress } from 'config';
+import { routeNames } from 'routes';
 import { numberToHex, numberToHexForBigUint, stringToHex } from 'utils';
 
 interface IFormInput {
@@ -28,6 +30,7 @@ interface Offer {
 
 const Actions = () => {
   const account = useGetAccountInfo();
+  const { hasPendingTransactions } = useGetPendingTransactions();
   const { address } = account;
 
   const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
@@ -52,8 +55,6 @@ const Actions = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     getNftUrl(data?.identifier, data?.spender, data?.amount);
   };
-
-  const navigate = useNavigate();
 
   const getCollections = () => {
     axios
@@ -97,7 +98,7 @@ const Actions = () => {
 
   React.useEffect(() => {
     getCollections();
-  }, [address]);
+  }, [address, hasPendingTransactions]);
 
   const createOfferTransaction = async () => {
     const createOfferTx = {
@@ -121,13 +122,12 @@ const Actions = () => {
         errorMessage: 'An error has occured during the creation of the offer',
         successMessage: 'Offer created with success'
       },
+      callbackRoute: routeNames.dashboard,
       redirectAfterSign: true
     });
     if (sessionId != null) {
       setTransactionSessionId(sessionId);
     }
-
-    navigate('/offers');
   };
 
   return (
@@ -167,11 +167,20 @@ const Actions = () => {
                 className='py-2 px-2 rounded-lg text-black font-semibold'
                 required
               />
-              <input
-                type='submit'
-                value='Submit'
-                className='mx-auto mt-8 custom-btn'
-              />
+              {!hasPendingTransactions ? (
+                <input
+                  type='submit'
+                  value='Submit'
+                  className='mx-auto mt-8 custom-btn'
+                />
+              ) : (
+                <div className='flex justify-center mt-4'>
+                  Creating the offer{' '}
+                  <span className='animate-spin ml-2 '>
+                    <TxProcessingNotch />{' '}
+                  </span>
+                </div>
+              )}
             </form>
           </>
         ) : (

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   transactionServices,
   refreshAccount,
+  useGetPendingTransactions,
   useGetNetworkConfig
 } from '@elrondnetwork/dapp-core';
 import {
@@ -23,6 +24,7 @@ import {
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
 import axios from 'axios';
 import CheckBadge from 'components/CheckBadge';
+import TxProcessingNotch from 'components/TxProcessingNotch';
 import { contractAddress, verified } from 'config';
 import { numberToHex } from 'utils';
 
@@ -44,6 +46,19 @@ type Props = {
 
 export default function OfferCard(props: Props) {
   const { network } = useGetNetworkConfig();
+  const { hasPendingTransactions } = useGetPendingTransactions();
+  const [, /*transactionSessionId*/ setTransactionSessionId] = React.useState<
+    string | null
+  >(null);
+  const { sendTransactions } = transactionServices;
+  // const transactionStatus = transactionServices.useTrackTransactionStatus({
+  //   transactionId: transactionSessionId
+  //   // onSuccess,
+  //   // onFail,
+  //   // onCancelled,
+  //   // onCompleted
+  // });
+  //console.log(transactionStatus);
   const proxy = new ProxyProvider(network.apiAddress);
 
   const [offersWithId, setOffersWithId] = React.useState<Offer>();
@@ -106,13 +121,10 @@ export default function OfferCard(props: Props) {
   // useEffect if address changes in order to avoid overloading the api by requests
   React.useEffect(() => {
     proxyQuery();
-  }, []);
+  }, [hasPendingTransactions]);
 
   //   // accepting offer
-  const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
-      string | null
-    >(null);
-  const { sendTransactions } = transactionServices;
+
   const acceptOfferTransaction = async () => {
     // pair length for hex
     let acceptOfferTx;
@@ -215,27 +227,47 @@ export default function OfferCard(props: Props) {
                 {String(offersWithId?.token_id)}
               </span>
               {verified.includes(String(offersWithId?.token_id)) && (
-                <CheckBadge />
+                <span className='ml-2'>
+                  <CheckBadge />
+                </span>
               )}
             </div>
             {props.buyable && (
               <div className='py-2 flex justify-start'>
-                <button
-                  onClick={acceptOfferTransaction}
-                  className='py-2 px-2 text-sm bg-white text-black font-semibold rounded-lg cursor-pointer'
-                >
-                  Buy for {+String(offersWithId?.amount) / 10 ** 18} EGLD
-                </button>
+                {!hasPendingTransactions ? (
+                  <button
+                    onClick={acceptOfferTransaction}
+                    className='py-2 px-2 text-sm bg-white text-black font-semibold rounded-lg cursor-pointer'
+                  >
+                    Buy for {+String(offersWithId?.amount) / 10 ** 18} EGLD
+                  </button>
+                ) : (
+                  <>
+                    Buying
+                    <span className='ml-2 animate-spin'>
+                      <TxProcessingNotch />
+                    </span>
+                  </>
+                )}
               </div>
             )}
             {props.toDelete && (
               <div className='py-2 flex justify-start'>
-                <button
-                  onClick={deleteOfferTransaction}
-                  className='py-2 px-2 text-sm bg-white text-black font-semibold rounded-lg cursor-pointer'
-                >
-                  Delete offer
-                </button>
+                {!hasPendingTransactions ? (
+                  <button
+                    onClick={deleteOfferTransaction}
+                    className='py-2 px-2 text-sm bg-white text-black font-semibold rounded-lg cursor-pointer'
+                  >
+                    Delete offer
+                  </button>
+                ) : (
+                  <>
+                    Deleting
+                    <span className='ml-2 animate-spin'>
+                      <TxProcessingNotch />
+                    </span>
+                  </>
+                )}
               </div>
             )}
           </div>
