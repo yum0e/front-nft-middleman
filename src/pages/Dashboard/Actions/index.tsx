@@ -9,6 +9,7 @@ import { Address } from '@elrondnetwork/erdjs';
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import CheckBadge from 'components/CheckBadge';
 import { contractAddress } from 'config';
 import { numberToHex, numberToHexForBigUint, stringToHex } from 'utils';
 
@@ -178,11 +179,11 @@ const Actions = () => {
             {exists ? (
               <>
                 <img
-                  className='w-1/3 mx-auto py-4'
+                  className='w-48 mx-auto py-4'
                   src={nft_url}
                   alt='nft_url'
                 />
-                <div className='py-4 flex flex-col justify-center text-center mx-2 md:mx-44'>
+                <div className='py-2 flex flex-col justify-center text-center mx-2 md:mx-24'>
                   <div className='font-bold'>
                     Do you want to allow{' '}
                     <span className='text-grad'>
@@ -194,6 +195,11 @@ const Actions = () => {
                       {JSON.stringify(offer.identifier).slice(1, -1)}-
                       {numberToHex(offer.nonce)}{' '}
                     </span>
+                    {JSON.stringify(offer.identifier).slice(1, -1) && (
+                      <span className='mr-1'>
+                        <CheckBadge />
+                      </span>
+                    )}
                     for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ? (You
                     will receive{' '}
                     {JSON.stringify(offer.amount * 0.98).slice(0, 5)} EGLD)

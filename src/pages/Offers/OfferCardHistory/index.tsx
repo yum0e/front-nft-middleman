@@ -118,7 +118,7 @@ export default function OfferCardHistory(props: Props) {
             )}`}
             target='_blank'
             rel='noreferrer'
-            className=' text-grad-2'
+            className='place-self-center  text-grad-2'
           >
             {String(offersWithId?.nft_holder).slice(0, 4)}...
             {String(offersWithId?.nft_holder).slice(-4)}
@@ -129,7 +129,7 @@ export default function OfferCardHistory(props: Props) {
             )}`}
             target='_blank'
             rel='noreferrer'
-            className=' text-grad-2'
+            className=' place-self-center text-grad-2'
           >
             {String(offersWithId?.spender).slice(0, 4)}...
             {String(offersWithId?.spender).slice(-4)}
@@ -141,7 +141,7 @@ export default function OfferCardHistory(props: Props) {
             )}`}
             target='_blank'
             rel='noreferrer'
-            className='text-grad'
+            className=' place-self-center text-grad'
           >
             {String(offersWithId?.token_id)}{' '}
             {verified.includes(String(offersWithId?.token_id)) && (
@@ -149,7 +149,9 @@ export default function OfferCardHistory(props: Props) {
             )}
           </a>
 
-          <div>{+String(offersWithId?.amount) / 10 ** 18} EGLD</div>
+          <div className='place-self-center'>
+            {+String(offersWithId?.amount) / 10 ** 18} EGLD
+          </div>
         </div>
       ) : (
         <div></div>

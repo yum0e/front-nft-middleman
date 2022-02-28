@@ -4,6 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function CheckBadge() {
   return (
-    <FontAwesomeIcon icon={faCheck} size='xs' className='ml-2 text-green-400' />
+    <FontAwesomeIcon icon={faCheck} size='xs' className='text-green-400' />
   );
 }

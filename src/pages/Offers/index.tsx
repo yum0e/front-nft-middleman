@@ -57,8 +57,11 @@ export default function Offers() {
       <div className='mt-4 text-center'>
         <span className='text-grad'>Disclaimer</span> - Only verified
         collections have the verified tick
-        <CheckBadge />, when you don&apos;t see this tick near the collection in
-        the offer, be very careful.
+        <span className='mx-1'>
+          <CheckBadge />
+        </span>
+        , when you don&apos;t see this tick near the collection in the offer, be
+        very careful.
       </div>
 
       {nbSubmitted > 0 ? (
