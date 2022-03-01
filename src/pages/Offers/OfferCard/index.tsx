@@ -243,7 +243,7 @@ export default function OfferCard(props: Props) {
                   </button>
                 ) : (
                   <>
-                    Buying
+                    Dealing with the submitted transaction
                     <span className='ml-2 animate-spin'>
                       <TxProcessingNotch />
                     </span>
@@ -262,7 +262,7 @@ export default function OfferCard(props: Props) {
                   </button>
                 ) : (
                   <>
-                    Deleting
+                    Dealing with the submitted transaction
                     <span className='ml-2 animate-spin'>
                       <TxProcessingNotch />
                     </span>
