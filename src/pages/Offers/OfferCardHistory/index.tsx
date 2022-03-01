@@ -108,7 +108,7 @@ export default function OfferCardHistory(props: Props) {
     <>
       {/* we only display the offer if the offer is Submitted */}
       {String(offersWithId?.status?.name) === 'Completed' ? (
-        <div className='px-2 py-2 grid grid-cols-5 bg-gray-900'>
+        <div className='px-2 py-2 grid grid-cols-5 gap-2 bg-gray-900'>
           <div className='w-12 h-12 '>
             <img src={nftUrl} alt='default_img' />
           </div>

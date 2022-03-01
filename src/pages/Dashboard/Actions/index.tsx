@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import CheckBadge from 'components/CheckBadge';
 import TxProcessingNotch from 'components/TxProcessingNotch';
-import { contractAddress } from 'config';
+import { contractAddress, verified } from 'config';
 import { routeNames } from 'routes';
 import { numberToHex, numberToHexForBigUint, stringToHex } from 'utils';
 
@@ -176,7 +176,7 @@ const Actions = () => {
               ) : (
                 <div className='flex justify-center mt-4'>
                   Creating the offer{' '}
-                  <span className='animate-spin ml-2 '>
+                  <span className=' ml-2 '>
                     <TxProcessingNotch />{' '}
                   </span>
                 </div>
@@ -204,7 +204,9 @@ const Actions = () => {
                       {JSON.stringify(offer.identifier).slice(1, -1)}-
                       {numberToHex(offer.nonce)}{' '}
                     </span>
-                    {JSON.stringify(offer.identifier).slice(1, -1) && (
+                    {verified.includes(
+                      JSON.stringify(offer.identifier).slice(1, -1)
+                    ) && (
                       <span className='mr-1'>
                         <CheckBadge />
                       </span>

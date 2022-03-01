@@ -243,10 +243,12 @@ export default function OfferCard(props: Props) {
                   </button>
                 ) : (
                   <>
-                    Dealing with the submitted transaction
-                    <span className='ml-2 animate-spin'>
-                      <TxProcessingNotch />
-                    </span>
+                    <div>
+                      Dealing with the submitted transaction
+                      <span className='ml-2'>
+                        <TxProcessingNotch />
+                      </span>
+                    </div>
                   </>
                 )}
               </div>
@@ -262,10 +264,12 @@ export default function OfferCard(props: Props) {
                   </button>
                 ) : (
                   <>
-                    Dealing with the submitted transaction
-                    <span className='ml-2 animate-spin'>
-                      <TxProcessingNotch />
-                    </span>
+                    <div>
+                      Dealing with the submitted transaction
+                      <span className='ml-2 animate-spin'>
+                        <TxProcessingNotch />
+                      </span>
+                    </div>
                   </>
                 )}
               </div>

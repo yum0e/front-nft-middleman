@@ -7,7 +7,7 @@ export default function TxProcessingNotch() {
     <FontAwesomeIcon
       icon={faCircleNotch}
       size='xs'
-      className='text-green-400'
+      className='text-green-400 animate-spin'
     />
   );
 }
