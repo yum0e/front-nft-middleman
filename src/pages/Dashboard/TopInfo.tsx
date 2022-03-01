@@ -3,7 +3,7 @@ import { useGetAccountInfo, DappUI } from '@elrondnetwork/dapp-core';
 
 const TopInfo = () => {
   const { address, account } = useGetAccountInfo();
-  const explorer_link = `https://devnet-explorer.elrond.com/accounts/${address}`;
+  const explorer_link = `https://explorer.elrond.com/accounts/${address}`;
 
   return (
     <>

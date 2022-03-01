@@ -59,7 +59,7 @@ const Actions = () => {
   const getCollections = () => {
     axios
       .get(
-        `https://devnet-api.elrond.com/accounts/${address}/nfts?size=2000&type=NonFungibleESDT`
+        `https://api.elrond.com/accounts/${address}/nfts?size=2000&type=NonFungibleESDT`
       )
       .then((response) => {
         const myCollections = response?.data;
@@ -69,7 +69,7 @@ const Actions = () => {
   };
   const getNftUrl = (identifier: string, spender: string, amount: number) => {
     axios
-      .get(`https://devnet-api.elrond.com/nfts/${identifier}`)
+      .get(`https://api.elrond.com/nfts/${identifier}`)
       .then((response) => {
         const nft_url_api = response?.data?.url;
         setNftUrl(nft_url_api);
@@ -82,7 +82,7 @@ const Actions = () => {
         });
         // we check if the spender address exists
         axios
-          .get(`https://devnet-api.elrond.com/accounts/${spender}`)
+          .get(`https://api.elrond.com/accounts/${spender}`)
           .then(() => {
             setIsSubmitted(true);
             setExists(true);

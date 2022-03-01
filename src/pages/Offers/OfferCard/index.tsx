@@ -110,7 +110,7 @@ export default function OfferCard(props: Props) {
 
   const getUrl = async (apiIdentifier: string) => {
     await axios
-      .get(`https://devnet-api.elrond.com/nfts/${apiIdentifier}`)
+      .get(`https://api.elrond.com/nfts/${apiIdentifier}`)
       .then((response) => {
         setNftUrl(response?.data?.url);
       })

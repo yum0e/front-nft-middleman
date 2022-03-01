@@ -32,12 +32,6 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "start-testnet": "npm run copy-testnet-config & npm run start",
-    "start-devnet": "npm run copy-devnet-config & npm run start",
-    "build-testnet": "npm run copy-testnet-config & npm run build",
-    "build-devnet": "npm run copy-devnet-config & npm run build",
-    "copy-testnet-config": "cp ./src/config.testnet.tsx ./src/config.tsx",
-    "copy-devnet-config": "cp ./src/config.devnet.tsx ./src/config.tsx",
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,ts,tsx src"
   },

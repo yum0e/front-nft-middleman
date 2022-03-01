@@ -91,7 +91,7 @@ export default function OfferCardHistory(props: Props) {
 
   const getUrl = async (apiIdentifier: string) => {
     await axios
-      .get(`https://devnet-api.elrond.com/nfts/${apiIdentifier}`)
+      .get(`https://api.elrond.com/nfts/${apiIdentifier}`)
       .then((response) => {
         setNftUrl(response?.data?.url);
       })
@@ -113,7 +113,7 @@ export default function OfferCardHistory(props: Props) {
             <img src={nftUrl} alt='default_img' />
           </div>
           <a
-            href={`https://devnet-explorer.elrond.com/accounts/${String(
+            href={`https://explorer.elrond.com/accounts/${String(
               offersWithId?.nft_holder
             )}`}
             target='_blank'
@@ -124,7 +124,7 @@ export default function OfferCardHistory(props: Props) {
             {String(offersWithId?.nft_holder).slice(-4)}
           </a>
           <a
-            href={`https://devnet-explorer.elrond.com/accounts/${String(
+            href={`https://explorer.elrond.com/accounts/${String(
               offersWithId?.spender
             )}`}
             target='_blank'
@@ -136,7 +136,7 @@ export default function OfferCardHistory(props: Props) {
           </a>
 
           <a
-            href={`https://devnet-explorer.elrond.com/collections/${String(
+            href={`https://explorer.elrond.com/collections/${String(
               offersWithId?.token_id
             )}`}
             target='_blank'
