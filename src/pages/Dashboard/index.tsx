@@ -52,10 +52,10 @@ const Dashboard = () => {
   return (
     <>
       <img
-        className='min-w-full min-h-full absolute top-0 left-0 object-cover bg-repeat-space filter -hue-rotate-30'
+        className='z-20 min-w-full min-h-full absolute top-0 left-0 object-cover bg-repeat-space filter -hue-rotate-30'
         src={Background}
       />
-      <div className='z-10 px-4 md:px-48'>
+      <div className='z-30 px-4 md:px-48'>
         {isLoggedIn ? (
           <>
             <div className='font-bold'>Hello !</div>

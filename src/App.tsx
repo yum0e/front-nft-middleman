@@ -31,7 +31,10 @@ const App = () => {
             className='text-black'
           /> */}
           <NotificationModal />
-          <SignTransactionsModals className='custom-class-for-modals' />
+          <SignTransactionsModals
+            shouldRenderDefaultCss={false}
+            className='flex flex-row text-transparent opacity-0 w-100 h-100 absolute top-0 backdrop-hue-rotate-180 z-0'
+          />
           <Routes>
             <Route
               path={routeNames.unlock}

@@ -48,7 +48,7 @@ export default function Offers() {
     nbOffersSubmittedQuery();
   }, []);
   return (
-    <div className='z-10 w-full px-8 md:px-48 mb-4'>
+    <div className='z-30 w-full px-8 md:px-48 mb-4'>
       <div className='font-bold text-3xl '>My Offers</div>
       <button className='my-2 py-1 px-2 rounded-xl text-sm bg-blue-500'>
         <Link to={routeNames.dashboard}>Go back</Link>

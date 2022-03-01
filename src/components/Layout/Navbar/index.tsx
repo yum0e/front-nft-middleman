@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='z-10 px-4 pt-8 md:pt-12 pb-4 md:px-48 flex justify-between '>
+      <div className='z-30 px-4 pt-8 md:pt-12 pb-4 md:px-48 flex justify-between '>
         <div className='flex items-center font-bold md:text-3xl text-2xl'>
           <Link to={isLoggedIn ? routeNames.dashboard : routeNames.home}>
             middleman.
