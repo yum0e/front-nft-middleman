@@ -18,7 +18,12 @@ const TopInfo = () => {
       </div>
 
       <div>
-        <DappUI.Denominate value={account.balance} /> in your wallet
+        <DappUI.Denominate
+          value={account.balance}
+          data-testid='balance'
+          showLabel={false}
+        />{' '}
+        EGLD in your wallet
       </div>
     </>
   );
