@@ -1,5 +1,5 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgqtx63v7esncctfp2cffhj0f346zwl8pq37fysuqdhag';
+  'erd1qqqqqqqqqqqqqpgqx9z6qw9ekttwp2d2h9tvq36ucdlp985035ds9qhmxm';
 
 export const dAppName = 'middleman.nft';
 
