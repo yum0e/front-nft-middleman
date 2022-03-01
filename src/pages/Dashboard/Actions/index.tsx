@@ -167,11 +167,14 @@ const Actions = () => {
                 className='py-2 px-2 rounded-lg text-black font-semibold'
                 required
               />
+              <div className='flex justify-center text-xs text-grad-2'>
+                Charging fees 2%
+              </div>
               {!hasPendingTransactions ? (
                 <input
                   type='submit'
                   value='Submit'
-                  className='mx-auto mt-8 custom-btn'
+                  className='mx-auto mt-6 custom-btn'
                 />
               ) : (
                 <div className='flex justify-center mt-4'>
@@ -214,6 +217,9 @@ const Actions = () => {
                     for {JSON.stringify(offer.amount).slice(1, -1)} EGLD ? (You
                     will receive{' '}
                     {JSON.stringify(offer.amount * 0.98).slice(0, 5)} EGLD)
+                  </div>
+                  <div className='mt-2 flex justify-center text-xs'>
+                    Charging fees 2%
                   </div>
                   <div className='mx-auto grid grid-cols-2 gap-5'>
                     <button
