@@ -8,7 +8,13 @@ export const stringToHex = (string: any) => {
 };
 
 export const numberToHex = (number: any) => {
-  return Number(number).toString(16).padStart(2, '0');
+  return Number(number)
+    .toString(16)
+    .padStart(
+      Number(number).toString(16).padStart(2, '0').length +
+        (Number(number).toString(16).padStart(2, '0').length % 2),
+      '0'
+    );
 };
 
 export const numberToHexForBigUint = (number: any) => {
