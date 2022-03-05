@@ -128,21 +128,13 @@ export default function OfferCard(props: Props) {
   const acceptOfferTransaction = async () => {
     // pair length for hex
     let acceptOfferTx;
-    if (idOffer.length % 2 != 0) {
-      acceptOfferTx = {
-        value: `${offersWithId?.amount}`,
-        gasLimit: '5000000',
-        data: `acceptOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    } else {
-      acceptOfferTx = {
-        value: `${offersWithId?.amount}`,
-        gasLimit: '5000000',
-        data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    }
+
+    acceptOfferTx = {
+      value: `${offersWithId?.amount}`,
+      gasLimit: '5000000',
+      data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
+      receiver: contractAddress
+    };
 
     await refreshAccount();
 
@@ -163,21 +155,13 @@ export default function OfferCard(props: Props) {
   const deleteOfferTransaction = async () => {
     // pair length for hex
     let deleteOfferTx;
-    if (idOffer.length % 2 != 0) {
-      deleteOfferTx = {
-        value: 0,
-        gasLimit: '5000000',
-        data: `deleteOffer@0${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    } else {
-      deleteOfferTx = {
-        value: 0,
-        gasLimit: '5000000',
-        data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
-        receiver: contractAddress
-      };
-    }
+
+    deleteOfferTx = {
+      value: 0,
+      gasLimit: '5000000',
+      data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
+      receiver: contractAddress
+    };
 
     await refreshAccount();
 
