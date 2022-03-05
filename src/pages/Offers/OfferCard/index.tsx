@@ -126,10 +126,7 @@ export default function OfferCard(props: Props) {
   //   // accepting offer
 
   const acceptOfferTransaction = async () => {
-    // pair length for hex
-    let acceptOfferTx;
-
-    acceptOfferTx = {
+    const acceptOfferTx = {
       value: `${offersWithId?.amount}`,
       gasLimit: '5000000',
       data: `acceptOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
@@ -153,10 +150,7 @@ export default function OfferCard(props: Props) {
   };
 
   const deleteOfferTransaction = async () => {
-    // pair length for hex
-    let deleteOfferTx;
-
-    deleteOfferTx = {
+    const deleteOfferTx = {
       value: 0,
       gasLimit: '5000000',
       data: `deleteOffer@${numberToHex(idOffer)}`, // id to hex with toString(16)
