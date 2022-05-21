@@ -16,7 +16,6 @@ import { contractAddress } from 'config';
 import { routeNames } from 'routes';
 import OffersFrom from './OffersFrom';
 import OffersHistory from './OffersHistory';
-import TopInfo from 'pages/Dashboard/TopInfo';
 
 export default function Offers() {
   const { address } = useGetAccountInfo();
