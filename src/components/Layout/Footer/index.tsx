@@ -18,7 +18,7 @@ const Footer = () => {
       >
         See the github repo
       </a>
-      <div>Made for the community</div>
+      <div className='text-grad font-bold'>Made for the community</div>
     </div>
   );
 };

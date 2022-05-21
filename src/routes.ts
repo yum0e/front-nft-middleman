@@ -24,8 +24,8 @@ const routes: Array<any> = [
   {
     path: routeNames.dashboard,
     title: 'Dashboard',
-    component: Dashboard,
-    authenticatedRoute: true
+    component: Dashboard
+    // authenticatedRoute: true
   },
   {
     path: routeNames.offers,

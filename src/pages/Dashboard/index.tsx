@@ -60,7 +60,7 @@ const Dashboard = () => {
           <>
             <div className='font-bold'>Hello !</div>
 
-            <TopInfo />
+            <TopInfo isConnected={true} />
             <div className='mt-4'>
               <Link to={routeNames.offers} className='font-bold custom-btn-2 '>
                 My offers{' '}
@@ -80,7 +80,28 @@ const Dashboard = () => {
             {/* <Transactions /> */}
           </>
         ) : (
-          <div>Not connected</div>
+          <>
+            <div className='font-bold'>Hello !</div>
+
+            <TopInfo isConnected={false} />
+            <div className='mt-4'>
+              <Link to={routeNames.offers} className='font-bold custom-btn-2 '>
+                My offers{' '}
+                {nbSubmitted > 0 ? (
+                  <span className='ml-1 px-2 rounded-full bg-green-500'>
+                    {nbSubmitted}
+                  </span>
+                ) : (
+                  <span className='ml-1 px-1 rounded-full bg-red-500'>0</span>
+                )}
+              </Link>
+              <div>{}</div>
+            </div>
+            <div className='py-4'>
+              <Actions />
+            </div>
+            {/* <Transactions /> */}
+          </>
         )}
       </div>
     </>

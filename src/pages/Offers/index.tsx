@@ -16,9 +16,12 @@ import { contractAddress } from 'config';
 import { routeNames } from 'routes';
 import OffersFrom from './OffersFrom';
 import OffersHistory from './OffersHistory';
+import TopInfo from 'pages/Dashboard/TopInfo';
 
 export default function Offers() {
   const { address } = useGetAccountInfo();
+
+  const isLoggedIn = Boolean(address);
   const { network } = useGetNetworkConfig();
   const proxy = new ProxyProvider(network.apiAddress);
 
@@ -62,6 +65,18 @@ export default function Offers() {
         </span>
         , when you don&apos;t see this tick near the collection in the offer, be
         very careful.
+      </div>
+
+      <div className='my-8 py-4 text-center bg-gray-900 rounded-xl '>
+        {isLoggedIn ? (
+          ''
+        ) : (
+          <div>
+            Please connect yourself to see your{' '}
+            <span className='text-grad font-semibold'>history</span> and your{' '}
+            <span className='text-grad-2 font-semibold'>pending offers</span>.
+          </div>
+        )}
       </div>
 
       {nbSubmitted > 0 ? (

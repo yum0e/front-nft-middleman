@@ -12,6 +12,8 @@ const Navbar = () => {
 
   const isLoggedIn = Boolean(address);
 
+  console.log(window.location.pathname);
+
   return (
     <>
       <div className='z-30 px-4 pt-8 md:pt-12 pb-4 md:px-48 flex justify-between '>
@@ -28,13 +30,26 @@ const Navbar = () => {
                 Close
               </button>
             ) : (
-              <Link
-                className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
-                to={routeNames.unlock}
-                style={{ textDecoration: 'none' }}
-              >
-                Connect
-              </Link>
+              <>
+                {window.location.pathname == '/offers' ||
+                window.location.pathname == '/dashboard' ? (
+                  <Link
+                    className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
+                    to={routeNames.unlock}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Connect
+                  </Link>
+                ) : (
+                  <Link
+                    className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
+                    to={routeNames.dashboard}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Open Dapp
+                  </Link>
+                )}
+              </>
             )}
           </div>
         </div>
