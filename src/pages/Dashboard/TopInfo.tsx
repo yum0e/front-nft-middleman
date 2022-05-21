@@ -34,11 +34,10 @@ const TopInfo = (props: ConnectedBoolean) => {
           </>
         ) : (
           <div>
-            Please connect yourself to see your{' '}
+            Connect your wallet to view your{' '}
             <span className='text-grad font-semibold'>account balance</span>,
-            your <span className='text-grad-2 font-semibold'>offers</span> or
-            begin an{' '}
-            <span className='text-grad-3 font-semibold'> exchange</span>.
+            your <span className='text-grad-2 font-semibold'>offers</span> and{' '}
+            <span className='text-grad-3 font-semibold'> start a trade</span>.
           </div>
         )}
       </div>

@@ -70,9 +70,10 @@ export default function Offers() {
         ''
       ) : (
         <div className='my-8 py-4 text-center bg-gray-900 rounded-xl '>
-          Please connect yourself to see your{' '}
-          <span className='text-grad font-semibold'>history</span> and your{' '}
-          <span className='text-grad-2 font-semibold'>pending offers</span>.
+          Connect your wallet to see your{' '}
+          <span className='text-grad font-semibold'>personal history</span> and
+          your <span className='text-grad-2 font-semibold'>pending offers</span>
+          .
         </div>
       )}
 
