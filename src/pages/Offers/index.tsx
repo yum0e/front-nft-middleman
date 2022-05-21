@@ -66,17 +66,15 @@ export default function Offers() {
         very careful.
       </div>
 
-      <div className='my-8 py-4 text-center bg-gray-900 rounded-xl '>
-        {isLoggedIn ? (
-          ''
-        ) : (
-          <div>
-            Please connect yourself to see your{' '}
-            <span className='text-grad font-semibold'>history</span> and your{' '}
-            <span className='text-grad-2 font-semibold'>pending offers</span>.
-          </div>
-        )}
-      </div>
+      {isLoggedIn ? (
+        ''
+      ) : (
+        <div className='my-8 py-4 text-center bg-gray-900 rounded-xl '>
+          Please connect yourself to see your{' '}
+          <span className='text-grad font-semibold'>history</span> and your{' '}
+          <span className='text-grad-2 font-semibold'>pending offers</span>.
+        </div>
+      )}
 
       {nbSubmitted > 0 ? (
         <>
