@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  useGetNetworkConfig,
-  useGetAccountInfo
-} from '@elrondnetwork/dapp-core';
+import { useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import {
   Address,
   ContractFunction,
@@ -10,17 +7,12 @@ import {
   Query,
   U64Value
 } from '@elrondnetwork/erdjs';
-import { Link } from 'react-router-dom';
-import CheckBadge from 'components/CheckBadge';
-import { contractAddress } from 'config';
-import OffersHistory from '../Offers/OffersHistory';
 import { BigNumber } from '@elrondnetwork/erdjs/node_modules/bignumber.js';
+import { contractAddress } from 'config';
+
 import OfferCardHistory from 'pages/Offers/OfferCardHistory';
 
 export default function Trades() {
-  const { address } = useGetAccountInfo();
-
-  const isLoggedIn = Boolean(address);
   const { network } = useGetNetworkConfig();
   const proxy = new ProxyProvider(network.apiAddress);
 
