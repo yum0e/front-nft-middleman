@@ -23,35 +23,40 @@ const Navbar = () => {
             <span className='text-grad'>nft</span>
           </Link>
         </div>
-        <div className='flex justify-end items-center font-semibold gap-5'>
-          <div>
-            {isLoggedIn ? (
-              <button className='custom-btn' onClick={handleLogout}>
-                Close
-              </button>
-            ) : (
-              <>
-                {window.location.pathname == '/offers' ||
-                window.location.pathname == '/dashboard' ? (
-                  <Link
-                    className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
-                    to={routeNames.unlock}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Connect
-                  </Link>
-                ) : (
-                  <Link
-                    className='px-4 py-3 rounded-xl bg-gradient-to-r from-white to-white text-black hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-500 hover:text-white cursor-pointer no-underline'
-                    to={routeNames.dashboard}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Launch App
-                  </Link>
-                )}
-              </>
-            )}
-          </div>
+        <div className='flex justify-end items-center font-semibold gap-4 '>
+          <Link
+            className='custom-btn-3'
+            to={routeNames.trades}
+            style={{ textDecoration: 'none' }}
+          >
+            All trades
+          </Link>
+          {isLoggedIn ? (
+            <button className='custom-btn' onClick={handleLogout}>
+              Disconnect
+            </button>
+          ) : (
+            <>
+              {window.location.pathname == '/offers' ||
+              window.location.pathname == '/dashboard' ? (
+                <Link
+                  className='custom-btn'
+                  to={routeNames.unlock}
+                  style={{ textDecoration: 'none' }}
+                >
+                  Connect
+                </Link>
+              ) : (
+                <Link
+                  className='custom-btn'
+                  to={routeNames.dashboard}
+                  style={{ textDecoration: 'none' }}
+                >
+                  Launch App
+                </Link>
+              )}
+            </>
+          )}
         </div>
       </div>
     </>

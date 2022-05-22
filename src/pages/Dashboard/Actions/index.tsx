@@ -132,7 +132,7 @@ const Actions = () => {
 
   return (
     <>
-      <div className='z-30 mt-4 pb-4 mx-auto md:mx-16 h-auto bg-gray-900 rounded-xl shadow-xl'>
+      <div className='z-30 mt-4 pb-4 mx-auto md:mx-16 lg:mx-32 xl:mx-42 2xl:mx-64 h-auto bg-gray-900 rounded-xl shadow-xl'>
         {!isSubmitted ? (
           <>
             <div className='pt-8 pb-4 flex justify-center font-semibold'>

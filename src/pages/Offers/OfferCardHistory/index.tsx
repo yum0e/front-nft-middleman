@@ -93,7 +93,7 @@ export default function OfferCardHistory(props: Props) {
     await axios
       .get(`https://api.elrond.com/nfts/${apiIdentifier}`)
       .then((response) => {
-        setNftUrl(response?.data?.url);
+        setNftUrl(response?.data?.media[0].thumbnailUrl);
       })
       .catch((e) => console.log(`Error: ${e}`));
   };
@@ -104,13 +104,21 @@ export default function OfferCardHistory(props: Props) {
     proxyQuery();
   }, []);
 
+  console.log(nftUrl);
+
   return (
     <>
       {/* we only display the offer if the offer is Submitted */}
       {String(offersWithId?.status?.name) === 'Completed' ? (
-        <div className='px-2 py-2 grid grid-cols-5 gap-2 bg-gray-900'>
-          <div className='w-12 h-12 '>
-            <img src={nftUrl} alt='default_img' />
+        <div className='px-2 py-2 grid grid-cols-5 gap-2 bg-gray-900 text-center'>
+          <div className='w-16 h-16'>
+            <a
+              href={`https://explorer.elrond.com/nfts/${
+                offersWithId?.token_id
+              }-${numberToHex(offersWithId?.nonce)}`}
+            >
+              <img className='rounded-sm' src={nftUrl} alt='default_img' />
+            </a>
           </div>
           <a
             href={`https://explorer.elrond.com/accounts/${String(

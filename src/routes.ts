@@ -1,5 +1,6 @@
 import { dAppName } from 'config';
 import Offers from 'pages/Offers';
+import Trades from 'pages/Trades';
 import withPageTitle from './components/PageTitle';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
@@ -9,6 +10,7 @@ export const routeNames = {
   home: '/',
   dashboard: '/dashboard',
   offers: '/offers',
+  trades: '/trades',
   transaction: '/transaction',
   unlock: '/unlock',
   ledger: '/ledger',
@@ -31,6 +33,11 @@ const routes: Array<any> = [
     path: routeNames.offers,
     title: 'Offers',
     component: Offers
+  },
+  {
+    path: routeNames.trades,
+    title: 'Trades',
+    component: Trades
   },
   {
     path: routeNames.transaction,
