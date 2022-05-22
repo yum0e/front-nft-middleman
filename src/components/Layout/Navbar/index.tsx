@@ -46,7 +46,7 @@ const Navbar = () => {
                     to={routeNames.dashboard}
                     style={{ textDecoration: 'none' }}
                   >
-                    Open Dapp
+                    Launch App
                   </Link>
                 )}
               </>
