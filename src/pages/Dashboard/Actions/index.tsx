@@ -190,11 +190,21 @@ const Actions = () => {
           <div>
             {exists ? (
               <>
-                <img
-                  className='w-48 mx-auto py-4'
-                  src={nft_url}
-                  alt='nft_url'
-                />
+                {nft_url.slice(-3) === 'mp4' ? (
+                  <video
+                    className='w-48 mx-auto py-4'
+                    autoPlay
+                    controls
+                    src={nft_url}
+                  ></video>
+                ) : (
+                  <img
+                    className='w-48 mx-auto py-4'
+                    src={nft_url}
+                    alt='default_img'
+                  />
+                )}
+
                 <div className='py-2 flex flex-col justify-center text-center mx-2 md:mx-24'>
                   <div className='font-bold'>
                     Do you want to allow{' '}

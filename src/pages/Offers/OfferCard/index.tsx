@@ -254,7 +254,11 @@ export default function OfferCard(props: Props) {
             )}
           </div>
           <div className='w-44 h-full py-4 justify-self-center'>
-            <img src={nftUrl} alt='default_img' />
+            {nftUrl.slice(-3) === 'mp4' ? (
+              <video autoPlay controls src={nftUrl}></video>
+            ) : (
+              <img src={nftUrl} alt='default_img' />
+            )}
           </div>
         </div>
       ) : (

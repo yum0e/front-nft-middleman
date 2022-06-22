@@ -117,7 +117,11 @@ export default function OfferCardHistory(props: Props) {
                 offersWithId?.token_id
               }-${numberToHex(offersWithId?.nonce)}`}
             >
-              <img className='rounded-sm' src={nftUrl} alt='default_img' />
+              {nftUrl.slice(-3) === 'mp4' ? (
+                <video autoPlay className='rounded-sm' src={nftUrl}></video>
+              ) : (
+                <img className='rounded-sm' src={nftUrl} alt='default_img' />
+              )}
             </a>
           </div>
           <a
